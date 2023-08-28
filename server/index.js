@@ -2,10 +2,13 @@ const express = require("express");
 require("dotenv").config();
 
 const sequelize = require("./db");
+const router = require("./routes/index");
 const backend_port = process.env.BACKEND_PORT || 8000;
 
 const app = express();
 app.use(express.json()); // for parsing application/json
+
+app.use("/api", router);
 
 const start = async () => {
   try {
