@@ -3,5 +3,9 @@ const bookController = require("../controllers/book.controller");
 const router = express.Router();
 
 router.get("/", bookController.getBooks);
+router.get("/:id", bookController.getBook);
+router.post("/", bookController.createBook);
+router.put("/", bookController.updateBook);
+router.delete("/:id", bookController.deleteBook);
 
 module.exports = router;
