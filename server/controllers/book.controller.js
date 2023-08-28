@@ -1,3 +1,4 @@
+const sequelize = require("../db");
 const GeneralError = require("../error/GeneralError");
 const { Book } = require("../models/book.model");
 
@@ -26,13 +27,18 @@ class BookController {
 
   async getBook(req, res, next) {
     try {
-      const book = await Book.findOne({
-        attributes: ["id", "title", "publication_date", "price"],
-        where: {
-          id: req.params.id,
-        },
-      });
-      return res.json(book);
+      const book = await sequelize.query(
+        `SELECT id, title, publication_date, price FROM "Book" WHERE id = ${req.params.id} limit 1`,
+        { model: Book }
+      );
+      return res.json(book[0]);
+      // const book = await Book.findOne({
+      //   attributes: ["id", "title", "publication_date", "price"],
+      //   where: {
+      //     id: req.params.id,
+      //   },
+      // });
+      // return res.json(book);
     } catch (e) {
       return next(GeneralError.badRequest(e.message));
     }
