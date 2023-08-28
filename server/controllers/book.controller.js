@@ -4,8 +4,19 @@ const { Book } = require("../models/book.model");
 class BookController {
   async getBooks(req, res, next) {
     try {
+      if (req.query.page && !(Number(req.query.page) > 0)) {
+        return next(GeneralError.badRequest("Page should be more than 0"));
+      }
+      if (req.query.page && !(Number(req.query.page_limit) > 0)) {
+        return next(GeneralError.badRequest("Page items limit is wrong"));
+      }
       const books = await Book.findAll({
         attributes: ["id", "title", "publication_date", "price"],
+        limit: Number(req.query.page) ? req.query.page_limit : undefined,
+        offset: Number(req.query.page)
+          ? req.query.page_limit * (req.query.page - 1)
+          : undefined,
+        order: [["id"]],
       });
       return res.json(books);
     } catch (e) {

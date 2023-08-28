@@ -4,8 +4,19 @@ const { Author } = require("../models/author.model");
 class AuthorController {
   async getAuthors(req, res, next) {
     try {
+      if (req.query.page && !(Number(req.query.page) > 0)) {
+        return next(GeneralError.badRequest("Page should be more than 0"));
+      }
+      if (req.query.page && !(Number(req.query.page_limit) > 0)) {
+        return next(GeneralError.badRequest("Page items limit is wrong"));
+      }
       const authors = await Author.findAll({
         attributes: ["id", "name", "surname", "birthdate"],
+        limit: Number(req.query.page) ? req.query.page_limit : undefined,
+        offset: Number(req.query.page)
+          ? req.query.page_limit * (req.query.page - 1)
+          : undefined,
+        order: [["id"]],
       });
       return res.json(authors);
     } catch (e) {
