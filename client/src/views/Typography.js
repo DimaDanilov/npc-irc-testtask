@@ -20,9 +20,11 @@ function Typography() {
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">Light Bootstrap Table Heading</Card.Title>
+                <Card.Title as="h4">
+                  Заголовки таблиц Light Bootstrap
+                </Card.Title>
                 <p className="card-category">
-                  Created using Montserrat Font Family
+                  Созданы с помощью шрифта Montserrat
                 </p>
               </Card.Header>
               <Card.Body>

@@ -26,9 +26,9 @@ class Footer extends Component {
         <Container fluid>
           <nav>
             <ul className="footer-menu d-flex">
-              <NavLink to="table">Table List</NavLink>
-              <NavLink to="typography">Typography</NavLink>
-              <NavLink to="icons">Icons</NavLink>
+              <NavLink to="table">Таблички</NavLink>
+              <NavLink to="typography">Типография</NavLink>
+              <NavLink to="icons">Иконки</NavLink>
             </ul>
           </nav>
         </Container>

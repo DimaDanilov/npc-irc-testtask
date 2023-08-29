@@ -20,9 +20,9 @@ function Icons() {
           <Col md="12">
             <Card>
               <Card.Header>
-                <Card.Title as="h4">100 Awesome Nucleo Icons</Card.Title>
+                <Card.Title as="h4">100 отличных иконок Nucleo</Card.Title>
                 <p className="card-category">
-                  Handcrafted by our friends from{" "}
+                  Разработаны нашими друзьями из{" "}
                   <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
                 </p>
               </Card.Header>

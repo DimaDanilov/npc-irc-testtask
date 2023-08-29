@@ -22,21 +22,21 @@ import Icons from "views/Icons.js";
 const dashboardRoutes = [
   {
     path: "/table",
-    name: "Table List",
+    name: "Таблички",
     icon: "nc-icon nc-notes",
     component: TableList,
     layout: "/admin",
   },
   {
     path: "/typography",
-    name: "Typography",
+    name: "Типография",
     icon: "nc-icon nc-paper-2",
     component: Typography,
     layout: "/admin",
   },
   {
     path: "/icons",
-    name: "Icons",
+    name: "Иконки",
     icon: "nc-icon nc-atom",
     component: Icons,
     layout: "/admin",

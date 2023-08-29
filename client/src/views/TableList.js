@@ -30,15 +30,15 @@ function TableList() {
         <Row>
           {books.length > 0 && (
             <DatabaseTable
-              cardTitle="Books"
-              cardDescription="Books of famous authors"
+              cardTitle="Книги"
+              cardDescription="Книги известных авторов"
               data={books}
             />
           )}
           {authors.length > 0 && (
             <DatabaseTable
-              cardTitle="Authors"
-              cardDescription="The most famous authors"
+              cardTitle="Писатели"
+              cardDescription="Самые известные писатели"
               data={authors}
             />
           )}
