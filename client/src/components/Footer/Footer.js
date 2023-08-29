@@ -17,6 +17,7 @@
 */
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 class Footer extends Component {
   render() {
@@ -24,33 +25,11 @@ class Footer extends Component {
       <footer className="footer px-0 px-lg-3">
         <Container fluid>
           <nav>
-            <ul className="footer-menu">
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Company
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                  Blog
-                </a>
-              </li>
+            <ul className="footer-menu d-flex">
+              <NavLink to="table">Table List</NavLink>
+              <NavLink to="typography">Typography</NavLink>
+              <NavLink to="icons">Icons</NavLink>
             </ul>
-            <p className="copyright text-center">
-              © {new Date().getFullYear()}{" "}
-              <a href="http://www.creative-tim.com">Creative Tim</a>, made with
-              love for a better web
-            </p>
           </nav>
         </Container>
       </footer>
