@@ -1,5 +1,6 @@
 const sequelize = require("../db");
 const GeneralError = require("../error/GeneralError");
+const { Author } = require("../models/author.model");
 const { Book } = require("../models/book.model");
 
 class BookController {
@@ -18,6 +19,11 @@ class BookController {
           ? req.query.page_limit * (req.query.page - 1)
           : undefined,
         order: [["id"]],
+        include: {
+          model: Author,
+          as: "author",
+          attributes: ["name", "surname"], // Замените на реальное имя поля автора
+        },
       });
       return res.json(books);
     } catch (e) {

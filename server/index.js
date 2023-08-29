@@ -5,8 +5,12 @@ const sequelize = require("./db");
 const router = require("./routes/index");
 const backend_port = process.env.BACKEND_PORT || 8000;
 
+var cors = require("cors");
+
 const app = express();
 app.use(express.json()); // for parsing application/json
+
+app.use(cors());
 
 app.use("/api", router);
 
