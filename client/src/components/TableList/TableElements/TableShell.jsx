@@ -1,12 +1,14 @@
 import React from "react";
 import { Card, Table, Col } from "react-bootstrap";
 import AuthorAddForm from "./AuthorAddForm";
+import { TableRow, TableRowWithEditDelete } from "./TableRows";
 
 function TableShell({
   cardTitle,
   cardDescription,
   data,
   onItemCreate,
+  onItemEdit,
   onItemDelete,
 }) {
   const keys = Object.keys(data[0]);
@@ -21,21 +23,16 @@ function TableShell({
   ];
 
   const tableRows = data.map((el, rowIndex) => {
-    const values = Object.values(el);
-    const tableRow = values.map((rowValues, valueIndex) => (
-      <td key={rowIndex + " " + valueIndex}>
-        <span>{rowValues}</span>
-      </td>
-    ));
-    return (
-      <tr key={rowIndex}>
-        {tableRow}
-        {onItemDelete && (
-          <td>
-            <button onClick={() => onItemDelete(el.id)}>Удалить</button>
-          </td>
-        )}
-      </tr>
+    return onItemDelete ? (
+      <TableRowWithEditDelete
+        data={el}
+        key={rowIndex}
+        rowIndex={rowIndex}
+        onItemEdit={onItemEdit}
+        onItemDelete={onItemDelete}
+      />
+    ) : (
+      <TableRow key={rowIndex} rowIndex={rowIndex} data={el} />
     );
   });
 

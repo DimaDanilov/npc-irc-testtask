@@ -1,6 +1,5 @@
 export class BookAdapter {
   static transform(bookItem) {
-    console.log(bookItem);
     return {
       id: bookItem.id,
       title: bookItem.title,

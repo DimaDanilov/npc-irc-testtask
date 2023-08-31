@@ -23,6 +23,17 @@ export async function createAuthor(name, surname, birthdate) {
   }
 }
 
+export async function editAuthor(data) {
+  try {
+    await axiosInstance.put(`api/author`, {
+      ...data,
+    });
+  } catch (e) {
+    alert(e.message);
+    console.error(e);
+  }
+}
+
 export async function deleteAuthor(id) {
   try {
     const response = await axiosInstance.delete(`api/author/${id}`);
