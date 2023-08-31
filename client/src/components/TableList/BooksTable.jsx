@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DatabaseTable from "./DatabaseTable";
 import { loadBooks } from "api/BookApi";
+import TableShell from "./TableElements/TableShell";
 
 function BooksTable() {
   const [books, setBooks] = useState([]);
@@ -17,7 +17,7 @@ function BooksTable() {
   return (
     <>
       {books.length > 0 && (
-        <DatabaseTable
+        <TableShell
           cardTitle="Книги"
           cardDescription="Книги известных авторов"
           data={books}

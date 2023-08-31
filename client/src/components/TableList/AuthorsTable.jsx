@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import DatabaseTable from "./DatabaseTable";
 import { loadAuthors } from "api/AuthorApi";
 import { deleteAuthor } from "api/AuthorApi";
+import { createAuthor } from "api/AuthorApi";
+import TableShell from "./TableElements/TableShell";
 
 function AuthorsTable() {
   const [authors, setAuthors] = useState([]);
@@ -15,6 +16,12 @@ function AuthorsTable() {
     fetchAuthors();
   }, []);
 
+  const onAuthorCreate = async (e, name, surname, birthdate) => {
+    e.preventDefault();
+    await createAuthor(name, surname, birthdate);
+    fetchAuthors();
+  };
+
   const onAuthorDelete = async (id) => {
     await deleteAuthor(id);
     fetchAuthors();
@@ -23,10 +30,11 @@ function AuthorsTable() {
   return (
     <>
       {authors.length > 0 && (
-        <DatabaseTable
+        <TableShell
           cardTitle="Писатели"
           cardDescription="Самые известные писатели"
           data={authors}
+          onItemCreate={onAuthorCreate}
           onItemDelete={onAuthorDelete}
         />
       )}

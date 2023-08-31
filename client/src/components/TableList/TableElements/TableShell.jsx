@@ -1,9 +1,14 @@
 import React from "react";
-
-// react-bootstrap components
 import { Card, Table, Col } from "react-bootstrap";
+import AuthorAddForm from "./AuthorAddForm";
 
-function DatabaseTable({ cardTitle, cardDescription, data, onItemDelete }) {
+function TableShell({
+  cardTitle,
+  cardDescription,
+  data,
+  onItemCreate,
+  onItemDelete,
+}) {
   const keys = Object.keys(data[0]);
   const tableHeaderTitles = keys.map((key) => (
     <th className="border-0" key={key}>
@@ -40,6 +45,7 @@ function DatabaseTable({ cardTitle, cardDescription, data, onItemDelete }) {
         <Card.Header>
           <Card.Title as="h4">{cardTitle}</Card.Title>
           <p className="card-category">{cardDescription}</p>
+          {onItemCreate && <AuthorAddForm onItemCreate={onItemCreate} />}
         </Card.Header>
         <Card.Body className="table-full-width table-responsive px-0">
           <Table className="table-hover table-striped">
@@ -54,4 +60,4 @@ function DatabaseTable({ cardTitle, cardDescription, data, onItemDelete }) {
   );
 }
 
-export default DatabaseTable;
+export default TableShell;
