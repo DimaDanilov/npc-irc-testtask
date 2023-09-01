@@ -10,6 +10,9 @@ export class BookAdapter {
     };
   }
   static transformArray(bookItems) {
-    return bookItems.map((item) => this.transform(item));
+    return {
+      rows: bookItems.rows.map((item) => this.transform(item)),
+      count: bookItems.count,
+    };
   }
 }

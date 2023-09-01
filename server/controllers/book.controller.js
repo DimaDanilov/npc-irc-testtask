@@ -12,7 +12,7 @@ class BookController {
       if (req.query.page && !(Number(req.query.page_limit) > 0)) {
         return next(GeneralError.badRequest("Page items limit is wrong"));
       }
-      const books = await Book.findAll({
+      const books = await Book.findAndCountAll({
         attributes: ["id", "title", "publication_date", "price"],
         limit: Number(req.query.page) ? req.query.page_limit : undefined,
         offset: Number(req.query.page)
