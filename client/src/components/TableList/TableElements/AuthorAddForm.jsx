@@ -5,21 +5,16 @@ function AuthorAddForm({ onItemCreate }) {
   const [surname, setSurname] = useState("");
   const [birthdate, setBirthdate] = useState("1900-01-01");
 
-  const onNameChange = (event) => {
-    setName(event.target.value);
-  };
-  const onSurnameChange = (event) => {
-    setSurname(event.target.value);
-  };
-  const onBirthdateChange = (event) => {
-    setBirthdate(event.target.value);
+  const onInputChange = (event, setter) => {
+    setter(event.target.value);
   };
 
   const onFormSubmit = (e) => {
+    e.preventDefault();
     setName("");
     setSurname("");
     setBirthdate("1900-01-01");
-    onItemCreate(e, name, surname, birthdate);
+    onItemCreate(name, surname, birthdate);
   };
 
   return (
@@ -32,7 +27,8 @@ function AuthorAddForm({ onItemCreate }) {
           name="name"
           placeholder="Name"
           value={name}
-          onChange={(e) => onNameChange(e)}
+          required
+          onChange={(e) => onInputChange(e, setName)}
         />
       </label>
       <label>
@@ -43,7 +39,8 @@ function AuthorAddForm({ onItemCreate }) {
           name="surname"
           placeholder="Surname"
           value={surname}
-          onChange={(e) => onSurnameChange(e)}
+          required
+          onChange={(e) => onInputChange(e, setSurname)}
         />
       </label>
       <label>
@@ -54,7 +51,8 @@ function AuthorAddForm({ onItemCreate }) {
           name="birthdate"
           placeholder="Birthdate"
           value={birthdate}
-          onChange={(e) => onBirthdateChange(e)}
+          required
+          onChange={(e) => onInputChange(e, setBirthdate)}
         />
       </label>
       <input type="submit" value="Добавить" onClick={(e) => onFormSubmit(e)} />

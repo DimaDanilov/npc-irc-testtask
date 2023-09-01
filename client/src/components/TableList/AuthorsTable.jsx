@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { loadAuthors } from "api/AuthorApi";
-import { deleteAuthor } from "api/AuthorApi";
-import { createAuthor } from "api/AuthorApi";
+import {
+  loadAuthors,
+  deleteAuthor,
+  createAuthor,
+  editAuthor,
+} from "api/AuthorApi";
 import TableShell from "./TableElements/TableShell";
-import { editAuthor } from "api/AuthorApi";
 
 function AuthorsTable() {
   const [authors, setAuthors] = useState([]);
@@ -17,15 +19,21 @@ function AuthorsTable() {
     fetchAuthors();
   }, []);
 
-  const onAuthorCreate = async (e, name, surname, birthdate) => {
-    e.preventDefault();
-    await createAuthor(name, surname, birthdate);
-    fetchAuthors();
+  const onAuthorCreate = async (name, surname, birthdate) => {
+    const newAuthor = await createAuthor(name, surname, birthdate);
+    setAuthors([...authors, newAuthor]);
   };
 
   const onAuthorEdit = async (data) => {
-    await editAuthor(data);
-    fetchAuthors();
+    const newAuthor = await editAuthor(data);
+    const updatedAuthors = [...authors];
+    const indexToReplace = updatedAuthors.findIndex(
+      (author) => author.id === newAuthor.id
+    );
+    if (indexToReplace !== -1) {
+      updatedAuthors[indexToReplace] = newAuthor;
+      setAuthors(updatedAuthors);
+    }
   };
 
   const onAuthorDelete = async (id) => {

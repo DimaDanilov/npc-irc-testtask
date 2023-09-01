@@ -1,4 +1,5 @@
 import { axiosInstance } from "api";
+import { AuthorAdapter } from "./AuthorAdapter";
 
 export async function loadAuthors() {
   try {
@@ -12,25 +13,29 @@ export async function loadAuthors() {
 
 export async function createAuthor(name, surname, birthdate) {
   try {
-    await axiosInstance.post(`api/author`, {
+    const response = await axiosInstance.post(`api/author`, {
       name,
       surname,
       birthdate,
     });
+    return AuthorAdapter.transform(response.data);
   } catch (e) {
     alert(e.message);
     console.error(e);
+    return {};
   }
 }
 
 export async function editAuthor(data) {
   try {
-    await axiosInstance.put(`api/author`, {
+    const response = await axiosInstance.put(`api/author`, {
       ...data,
     });
+    return AuthorAdapter.transform(response.data);
   } catch (e) {
     alert(e.message);
     console.error(e);
+    return {};
   }
 }
 
